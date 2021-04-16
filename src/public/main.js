@@ -7,6 +7,7 @@ const messageForm = document.getElementById("message-form");
 const messageInput = document.getElementById("message-input");
 
 const sendMessage = () => {
+  if (messageInput.value === "") return;
   //   console.log(messageInput.value);
   const data = {
     name: nameInput.value,
@@ -46,4 +47,10 @@ const addMessageToUI = (isOwnMessage, data) => {
         </p>
     </li>`;
   messageContainer.innerHTML += element;
+  scrollToBottom();
+};
+
+/** scrolling messages automatically */
+const scrollToBottom = () => {
+  messageContainer.scrollTo(0, messageContainer.scrollHeight);
 };
