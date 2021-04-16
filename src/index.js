@@ -28,6 +28,25 @@ server.listen(port, () => {
 /** initialize socket server */
 const io = new Server(server);
 
+/** total clients connected */
+const totalClients = new Set();
+
+/** client connected */
 io.on("connection", (client) => {
-  console.log(client.id);
+  console.log(`Client connected: ${client.id}`);
+
+  /** adding clinets to the Set to avoid duplicate. */
+  totalClients.add(client.id);
+
+  /** emit the totalClients event to show case the number of clients connected */
+  //io.emit("totalClients", totalClients.size);
+
+  /** client disconnected */
+  client.on("disconnect", () => {
+    console.log(`Client disconnected: ${client.id}`);
+    totalClients.delete(client.id);
+
+    /** emit the totalClients event to show case the number of clients connected */
+    //io.emit("totalClients", totalClients.size);
+  });
 });
