@@ -55,4 +55,10 @@ io.on("connection", (client) => {
     /** broadcasting client message to everyone except the client who sents the message */
     client.broadcast.emit("chat-message", data);
   });
+
+  /** listening feedback event */
+  client.on("feedback", (data) => {
+    /** broadcasting client feedback to everyone except the client who sents the message */
+    client.broadcast.emit("feedback", data);
+  });
 });
