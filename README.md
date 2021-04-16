@@ -15,7 +15,7 @@ WebSockets are an alternative to HTTP communication in Web Application, they off
 Step 1: Clone the repo
 
 ```bash
-git clone
+git clone https://github.com/puneeth-techie/node-chat-socket.git
 ```
 
 Step 2: cd into the cloned repo and run:
