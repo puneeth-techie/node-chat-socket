@@ -33,7 +33,7 @@ const totalClients = new Set();
 
 /** client connected */
 io.on("connection", (client) => {
-  console.log(`Client connected: ${client.id}`);
+  // console.log(`Client connected: ${client.id}`);
 
   /** adding clinets to the Set to avoid duplicate. */
   totalClients.add(client.id);
@@ -43,10 +43,16 @@ io.on("connection", (client) => {
 
   /** client disconnected */
   client.on("disconnect", () => {
-    console.log(`Client disconnected: ${client.id}`);
+    // console.log(`Client disconnected: ${client.id}`);
     totalClients.delete(client.id);
 
     /** emit the totalClients event to show case the number of clients connected */
     io.emit("totalClients", totalClients.size);
+  });
+
+  /** listening message event from the client */
+  client.on("message", (data) => {
+    /** broadcasting client message to everyone except the client who sents the message */
+    client.broadcast.emit("chat-message", data);
   });
 });
