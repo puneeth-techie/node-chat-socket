@@ -39,7 +39,7 @@ io.on("connection", (client) => {
   totalClients.add(client.id);
 
   /** emit the totalClients event to show case the number of clients connected */
-  //io.emit("totalClients", totalClients.size);
+  io.emit("totalClients", totalClients.size);
 
   /** client disconnected */
   client.on("disconnect", () => {
@@ -47,6 +47,6 @@ io.on("connection", (client) => {
     totalClients.delete(client.id);
 
     /** emit the totalClients event to show case the number of clients connected */
-    //io.emit("totalClients", totalClients.size);
+    io.emit("totalClients", totalClients.size);
   });
 });

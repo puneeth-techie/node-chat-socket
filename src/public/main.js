@@ -1,7 +1,7 @@
 const socket = io();
 
-// const totalClient = document.getElementById('client-total');
+const totalClient = document.getElementById("client-total");
 
-// socket.on('totalClients', (data) => {
-//     totalClient.innerText(`Total Clients: ${data}`)
-// })
+socket.on("totalClients", (data) => {
+  totalClient.innerText = `Total clients: ${data}`;
+});
