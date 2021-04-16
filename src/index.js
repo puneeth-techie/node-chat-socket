@@ -2,7 +2,7 @@ import express from "express";
 import http from "http";
 import dotenv from "dotenv";
 import morgan from "morgan";
-import * as io from "socket.io";
+import { Server } from "socket.io";
 
 /** dotenv initialize */
 dotenv.config();
@@ -26,8 +26,8 @@ server.listen(port, () => {
 });
 
 /** initialize socket server */
-const socketio = new io.Server(server);
+const io = new Server(server);
 
-socketio.on("connection", (socket) => {
-  console.log(socket.id);
+io.on("connection", (client) => {
+  console.log(client.id);
 });
